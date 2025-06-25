@@ -12,12 +12,13 @@ import java.util.Scanner
 
 
 fun main() {
-    val runner = InMemoryRunner(Config().googleAdkAgent())
+    val agent = Config().currentTimeAtCityAgent()
+    val runner = InMemoryRunner(agent)
 
     val session: Session =
         runner
             .sessionService()
-            .createSession(AgentConstants.NAME, AgentConstants.USER_ID)
+            .createSession(agent.name(), AgentConstants.USER_ID)
             .blockingGet()
 
     Scanner(System.`in`, StandardCharsets.UTF_8).use { scanner ->
